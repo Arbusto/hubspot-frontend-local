@@ -21,16 +21,16 @@ const gutil = require('gulp-util');
 const buffer = require('vinyl-buffer');
 
 
-function getFilePath(id) {
+function getFilePath(name) {
   let options = {
     method: 'GET',
-    uri: `http://api.hubapi.com/content/api/v2/templates/${id}?hapikey=${config.api_key}`,
+    uri: `http://api.hubapi.com/content/api/v2/templates?hapikey=${config.api_key}&label=${name}`,
   };
 
   return rp(options);
 }
 
-gulp.task('sass-lint', () => {
+const runSassLint = () => {
   return gulp.src('./src/styles/*.scss')
     .pipe(sassLint({
       rules: {
@@ -43,7 +43,8 @@ gulp.task('sass-lint', () => {
     }))
     .pipe(sassLint.format())
     .pipe(sassLint.failOnError())
-});
+}
+gulp.task('sass-lint', runSassLint);
 
 gulp.task('eslint', ['scripts'], () => {
   gulp.src(["./src/scripts/**/*.js"])
@@ -96,9 +97,8 @@ gulp.task('servePage', () => {
   const jsRegex = new Promise((resolve, reject) => {
     if (js.useLocal) {
       if (js.overWriteLocal) {
-        const fileLocation = getFilePath(js.id).then((body) => {
-          let { path } = JSON.parse(body);
-          let regVal = `<script .*${path.replace('.js', '')}.*\.js.*><\/script>`;
+        const fileLocation = getFilePath('main.js').then((body) => {
+          let regVal = `<script .*main.*\.js.*><\/script>`;
           let regex = new RegExp(regVal);
 
           jsRewrite.push({
@@ -126,9 +126,8 @@ gulp.task('servePage', () => {
   const cssRegex = new Promise((resolve, reject) => {
     if (css.useLocal) {
       if (css.overWriteLocal) {
-        const fileLocation = getFilePath(css.id).then((body) => {
-          let { path } = JSON.parse(body);
-          let regVal = `<link.*${path.replace('.css', '')}.*.css.*>`;
+        const fileLocation = getFilePath('main.css').then((body) => {
+          let regVal = `<link.*main.*.css.*>`;
           let regex = new RegExp(regVal);
 
           showCss = {
@@ -178,9 +177,9 @@ gulp.task('servePage', () => {
       open: true,
       https: false
     });
-    gulp.watch('./src/styles/*.*', ['sass-lint', 'concat-head', browserSync.reload]);
-    gulp.watch('./src/scripts/*.js', ['eslint', browserSync.reload]);
-    gulp.watch('./src/views/*.html', ['views', browserSync.reload]);
+    gulp.watch('./src/styles/*.*', ['sass-lint', 'concat-head']).on('change', browserSync.reload);
+    gulp.watch('./src/scripts/*.js', ['eslint']).on('change', browserSync.reload);
+    gulp.watch('./src/views/*.html', ['views']).on('change', browserSync.reload);
   });
 });
 

@@ -3,21 +3,17 @@
 	"preview_url": "https://preview.hs-sites.com/_hcms/preview/template/multi?domain=undefined&portalId=5193183&tc_deviceCategory=undefined&template_file_path=Augusto/index.html&updated=1543761510818",
 	"files": {
 		"html": {
-			"hubspot_path": "Augusto/Partials",
-			"useLocal": true,
-			"overWriteLocal": true
+			"hubspot_path": "Augusto/Partials"
 		},
 		"css": {
 			"path": "/dist/main.css",
 			"useLocal": true,
-			"overWriteLocal": true,
-			"id": 6666145956
+			"overWriteLocal": true
 		},
 		"js": {
 			"path": "/dist/main.js",
 			"useLocal": true,
-			"overWriteLocal": true,
-			"id": 6677859031
+			"overWriteLocal": true
 		}
 	}
 }
