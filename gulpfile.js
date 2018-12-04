@@ -261,47 +261,45 @@ gulp.task('views', () => {
 
 gulp.task('design-manager', () => {
   let { api_key, files } = config;
-
   const file = fs.readFileSync(__dirname + '/dist/main.js', 'utf8');
 
   Object.keys(files).forEach(function (file) {
     let thisFile = files[file];
     if (!thisFile.useLocal) return;
+    thisFile.name = thisFile.path.replace('/dist/', '');
+    getFilePath(thisFile.name).then((file) => {
+      thisFile.id = JSON.parse(file).objects[0].id;
+      thisFile.id && fs.readFile(__dirname + thisFile.path, (err, data) => {
+        if (err) return console.error(err);
 
-    if (!thisFile.id) return console.error(`Please give your ${file} file an ID in config.json`);
+        let source = JSON.stringify({
+          "source": data.toString()
+        });
 
-    let fileString = fs.readFile(__dirname + thisFile.path, (err, data) => {
-      if (err) return console.error(err);
+        let options = {
+          method: 'PUT',
+          uri: `http://api.hubapi.com/content/api/v2/templates/${thisFile.id}?hapikey=${api_key}`,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: source
+        };
 
-
-      let source = JSON.stringify({
-        "source": data.toString()
-      });
-
-      let options = {
-        method: 'PUT',
-        uri: `http://api.hubapi.com/content/api/v2/templates/${thisFile.id}?hapikey=${api_key}`,
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: source
-      };
-
-      rp(options)
-        .then(function (body) {
-          let { label, folder_id, path } = JSON.parse(body);
-          console.log(`
+        rp(options)
+          .then(function (body) {
+            let { label, folder_id, path } = JSON.parse(body);
+            console.log(`
           File: ${folder_id}
           Label: ${label}
           At: ${path}
           Successfully updated`);
-        })
-        .catch(function (err) {
-          return console.error('Upload Failed:', err);
-        });
-
+          })
+          .catch(function (err) {
+            return console.error('Upload Failed:', err);
+          });
+      });
     });
-  })
+  });
 });
 
 gulp.task('build', ['concat-head', 'scripts', 'views']);
