@@ -1,0 +1,45 @@
+footer {
+    background-image: url("https://cdn2.hubspot.net/hubfs/5193183/U-Planner/u-planner-background.png");
+    background-position: center;
+    height: 342px;
+    color: white;
+    padding: 35px 0 0 0;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+
+    hr {
+        width: 95%;
+    }
+
+    .copyrights {
+        display: flex;
+        width: 100%;
+    }
+
+    .office-list {
+        display: flex;
+
+        .office {
+            flex-direction: column;
+            padding: 5px;
+        }
+    }
+
+    .social {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        .social-logos {
+            display: flex;
+            flex-direction: row;
+
+            div {
+                padding: 1px;
+            }
+        }
+    }
+}
