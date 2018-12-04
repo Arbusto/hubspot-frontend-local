@@ -1,0 +1,13 @@
+.hero-1 {
+    height: 450px;
+
+    .columns-right {
+        position: static;
+
+        .images-right {
+            position: absolute;
+            top: 120px;
+            right: 0px;
+        }
+    }
+}

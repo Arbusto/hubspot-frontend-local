@@ -1,14 +1,14 @@
 .logos-2 {
-    padding: 100px;
+    padding: 50px;
     position: relative;
 
     .titles {
         position: absolute;
         background-color: white;
-        top: 120px;
-        left: 95px;
-        border-radius: 4px;
-        padding: 5px;
+        top: 70px;
+        left: 45px;
+        border-radius: 6px;
+        padding: 1px 15px 1px 5px;
         text-align: center;
         font-weight: bold;
     }
@@ -17,8 +17,12 @@
         background-color: #324654;
         border-radius: 8px;
         display: flex;
-        justify-content: space-around !important;
+        justify-content: space-around;
         padding: 75px 0px 50px 0px;
         height: 100%;
+
+        .separator {
+            color: white;
+        }
     }
 }
