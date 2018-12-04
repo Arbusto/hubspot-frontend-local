@@ -178,8 +178,8 @@ gulp.task('servePage', () => {
       https: false
     });
     gulp.watch('./src/styles/*.*', ['sass-lint', 'concat-head']).on('change', browserSync.reload);
-    gulp.watch('./src/scripts/*.js', ['eslint']).on('change', browserSync.reload);
-    gulp.watch('./src/views/*.html', ['views']).on('change', browserSync.reload);
+    gulp.watch('./src/scripts/*.js', ['eslint']);
+    gulp.watch('./src/views/*.html', ['views']);
   });
 });
 
@@ -248,8 +248,6 @@ gulp.task('views', () => {
         }
         rp(options);
       });
-      console.log(files)
-      console.log(views)
       const deleted = Object.keys(files).filter(file => !views.includes(file));
       deleted.forEach((view) => {
         const id = files[view];

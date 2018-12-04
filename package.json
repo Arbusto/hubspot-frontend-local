@@ -1,5 +1,5 @@
 {
-  "name": "Hubspot",
+  "name": "hubspot",
   "version": "1.0.0",
   "description": "This project was designed to help developers worry less about coding css and javascript and testing on hubspot and focus more on the stuff we enjoy!",
   "main": "index.html",
