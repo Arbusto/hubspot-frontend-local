@@ -54,19 +54,4 @@
             }
         }
     }
-
-    .carousel-indicators {
-        bottom: -50px;
-
-        li {
-            background-color: #f1f3f4;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-
-            &.active {
-                background-color: #0070C0;
-            }
-        }
-    }
 }
