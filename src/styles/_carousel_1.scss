@@ -1,0 +1,74 @@
+.carousel-1 {
+    padding: 50px 0px;
+
+    .carousel-control a {
+        position: absolute;
+        background-color: #0170C0;
+        text-align: left;
+        width: 4em;
+        height: 4em;
+        bottom: initial;
+        top: initial;
+        margin-top: 135px;
+        border-top-right-radius: 50%;
+
+        a {}
+
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            background-color: inherit;
+            width: 4em;
+            height: 4em;
+            border-top-right-radius: 30%;
+        }
+
+        &::before {
+            transform: rotate(-135deg) skewX(-45deg) scale(1.414, 0.707) translate(0, -50%);
+        }
+
+        &:after {
+            transform: rotate(135deg) skewY(-45deg) scale(0.707, 1.414) translate(50%);
+        }
+
+        &.carousel-control-prev {
+            transform: rotate(30deg) skewX(-30deg) scale(1, 0.866);
+            margin-left: -25px;
+
+            .carousel-control-prev-icon {
+                transform: rotate(-45deg);
+                position: relative;
+                right: -10px;
+                top: -10px;
+            }
+        }
+
+        &.carousel-control-next {
+            transform: rotate(-150deg) skewX(-30deg) scale(1, 0.866);
+            margin-right: -25px;
+
+            .carousel-control-next-icon {
+                transform: rotate(135deg);
+                position: relative;
+                right: -10px;
+                top: -10px;
+            }
+        }
+    }
+
+    .carousel-indicators {
+        bottom: -50px;
+
+        li {
+            background-color: #f1f3f4;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+
+            &.active {
+                background-color: #0070C0;
+            }
+        }
+    }
+}
