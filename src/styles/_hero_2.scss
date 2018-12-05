@@ -1,0 +1,36 @@
+.hero-2 {
+    height: 610px;
+
+    .columns-left {
+        padding-top: 55px;
+        padding-bottom: 55px;
+
+        .titles-left {
+            margin-bottom: 10px;
+        }
+
+        .texts-left {
+            margin-bottom: 10px;
+
+            i {
+                color: #197ec5;
+                padding: 3px;
+            }
+        }
+
+        .buttons-left {
+            background-color: #FFAF3A;
+            padding: 3px 30px;
+        }
+    }
+
+    .columns-right {
+        position: static;
+
+        .images-right {
+            position: absolute;
+            top: 1820px;
+            right: 0px;
+        }
+    }
+}
