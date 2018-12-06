@@ -1,0 +1,33 @@
+@media screen and (max-width: 991.98px) {
+    .module-logos {
+        margin-left: calc(20% - 50vw);
+        margin-right: calc(20% - 50vw);
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        .titles {
+            margin-bottom: -10px;
+            text-align: center;
+            width: 100%;
+            background-color: initial;
+            position: relative;
+            left: auto;
+            font-size: 34px;
+        }
+
+        .logos {
+            width: 100%;
+            text-align: center;
+
+            .separator {
+                display: none;
+            }
+
+            div {
+                margin-bottom: 10px;
+            }
+        }
+    }
+}

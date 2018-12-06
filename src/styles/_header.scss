@@ -1,6 +1,10 @@
 header {
     height: 161px;
     background-color: #EFF0F2;
+
+    .mobile-menu {
+        display: none;
+    }
 }
 
 header .container {
@@ -12,6 +16,11 @@ header .container {
 header .nav {
     display: flex;
     align-items: center;
+
+    .desktop-menu {
+        display: flex;
+        align-items: center;
+    }
 }
 
 header .nav-logo {
@@ -28,6 +37,16 @@ header .nav-item {
     padding: 0px;
     margin-top: 20px;
     margin-right: 7px;
+
+    a {
+        text-decoration: none;
+        color: #212529;
+        cursor: pointer;
+
+        &hover {
+            color: #212529;
+        }
+    }
 }
 
 header .nav-separator {

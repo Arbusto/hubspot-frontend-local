@@ -1,0 +1,29 @@
+@media screen and (max-width: 991.98px) {
+    header {
+        .container {}
+    }
+
+    header .nav {
+        align-items: center;
+        width: 100%;
+
+        .nav-logo {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .mobile-menu {
+            cursor: pointer;
+            display: block;
+
+            i {
+                font-size: 35px;
+            }
+        }
+
+        .desktop-menu {
+            display: none;
+        }
+    }
+}

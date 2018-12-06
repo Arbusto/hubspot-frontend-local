@@ -7,6 +7,14 @@ hr {
     width: 100%;
 }
 
+.buttons {
+    border-color: #ffaf3a;
+}
+
+.dropdown {
+    cursor: pointer;
+}
+
 .carousel-indicators {
     bottom: -65px;
 
@@ -20,4 +28,8 @@ hr {
             background-color: #0070C0;
         }
     }
+}
+
+.carousel-control {
+    display: none;
 }

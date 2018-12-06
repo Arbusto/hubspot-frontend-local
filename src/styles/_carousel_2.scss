@@ -1,5 +1,6 @@
 .carousel-2 {
-    padding: 100px 0px;
+    position: relative;
+    margin-top: 50px;
 
     .row {
         padding: 15px 0px;
@@ -13,11 +14,7 @@
         right: 50%;
         margin-left: -50vw;
         margin-right: -50vw;
-        height: 420px;
-    }
-
-    .carousel-control {
-        display: none;
+        height: 115%;
     }
 
     .carousel-item {

@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Lato");
 
+@import "node_modules/bootstrap/scss/bootstrap";
+
 @import "common";
 @import "header";
 @import "footer";
@@ -10,3 +12,10 @@
 @import "hero_2";
 @import "carousel_2";
 @import "carousel_3";
+
+@import "header_mq";
+@import "common_mq";
+@import "hero_mq";
+@import "logos_mq";
+@import "carousel_mq";
+@import "footer_mq";

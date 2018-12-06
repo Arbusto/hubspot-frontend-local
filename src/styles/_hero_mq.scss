@@ -1,0 +1,32 @@
+@media screen and (max-width: 991.98px) {
+    .module-hero {
+        height: auto;
+
+        .columns {
+            div {
+                display: inline;
+                line-height: 32px;
+            }
+
+            .titles {
+                display: block;
+                text-align: center;
+            }
+
+            .images {
+                display: none;
+            }
+
+            .buttons {
+                width: 100%;
+                margin: 0 auto;
+                display: block;
+                margin-top: 10px;
+
+                button {
+                    width: auto;
+                }
+            }
+        }
+    }
+}
