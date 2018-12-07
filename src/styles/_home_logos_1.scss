@@ -1,0 +1,18 @@
+.home {
+    .logos-1 {
+        position: relative;
+
+        .logos {
+            margin-top: 35px;
+            justify-content: space-evenly;
+
+            div {
+                text-align: center;
+            }
+
+            .separator {
+                background: #324654;
+            }
+        }
+    }
+}

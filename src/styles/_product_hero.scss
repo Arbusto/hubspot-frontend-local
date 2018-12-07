@@ -1,0 +1,45 @@
+.product {
+    .module-hero {
+        height: auto;
+        margin-top: 50px;
+
+        ul {
+            list-style-type: none;
+
+            div {
+                display: inline;
+            }
+
+            li {
+                margin-bottom: 20px;
+
+                &:before {
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 900;
+                    content: '\f00c';
+                    margin: 0 5px 0 -15px;
+                    color: #ffaf3a;
+                }
+            }
+        }
+
+        .titles {
+            margin-bottom: 10px;
+        }
+
+        .columns {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .buttons {
+            margin-top: 10px;
+
+            button {
+                background-color: #FFAF3A;
+                padding: 3px 30px;
+            }
+        }
+    }
+}

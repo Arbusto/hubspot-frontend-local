@@ -1,0 +1,17 @@
+.product {
+    .hero-1 {
+        height: 490px;
+
+        .images {
+            height: auto;
+        }
+
+        .columns-right {
+            .images-right {
+                position: absolute;
+                top: -70px;
+                right: 0px;
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+.product {
+    .hero-2 {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 5% 0;
+
+        .background {
+            background-color: rgba(50, 70, 84, 0.08);
+            width: 100vw;
+            position: absolute;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            height: 101%;
+            padding: 5%;
+        }
+    }
+}
