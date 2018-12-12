@@ -1,12 +1,5 @@
 @media screen and (max-width: 991.98px) {
     .module-logos {
-        margin-left: calc(20% - 50vw);
-        margin-right: calc(20% - 50vw);
-
-        div {
-            margin-bottom: 10px;
-        }
-
         .titles {
             margin-bottom: -10px;
             text-align: center;
@@ -14,7 +7,20 @@
             background-color: initial;
             position: relative;
             left: auto;
-            font-size: 34px;
+
+            div {
+                font-size: 32px !important;
+            }
+        }
+
+        .logo-text {
+            margin-top: 30px;
+        }
+
+        .subtitle {
+            div {
+                font-size: 24px !important;
+            }
         }
 
         .logos {
@@ -22,12 +28,20 @@
             text-align: center;
 
             .separator {
-                display: none;
+                width: 30%;
+                height: 1px;
+                margin: 50px 10px;
             }
+        }
+    }
 
-            div {
-                margin-bottom: 10px;
-            }
+    .logos-2 {
+        padding: 0px !important;
+
+        .titles {
+            width: auto;
+            left: -5px !important;
+            top: 10px !important;
         }
     }
 }

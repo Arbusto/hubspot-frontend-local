@@ -1,7 +1,7 @@
-{% include_view header %}
-<div class="content">
-    {{ request.path }}
-     {{ request.full_url }}
-</div>
-{% include_view product %} 
-{% include_view footer %}
+{% set footer = partials_path+"footer.html" %} 
+{% set home = partials_path+"home.html" %} 
+{% set header = partials_path+"header.html" %} 
+{% set product = partials_path+"product.html" %} 
+{% include header %}
+{% include product %}
+{% include footer %}

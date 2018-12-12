@@ -1,29 +1,42 @@
 @media screen and (max-width: 991.98px) {
     header {
-        .container {}
-    }
-
-    header .nav {
-        align-items: center;
-        width: 100%;
-
-        .nav-logo {
-            width: 80%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .mobile-menu {
-            cursor: pointer;
-            display: block;
-
-            i {
-                font-size: 35px;
-            }
-        }
-
-        .desktop-menu {
+        .contact {
             display: none;
+        }
+
+        .language {
+            right: 0;
+        }
+
+        .nav {
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+
+            .nav-logo {
+                width: 50%;
+                display: flex;
+                justify-content: center;
+
+                img {
+                    width: 160px;
+                    height: 50px;
+                }
+            }
+
+            .mobile-menu {
+                cursor: pointer;
+                display: block;
+
+                i {
+                    font-size: 35px;
+                    color: #0070C0;
+                }
+            }
+
+            .desktop-menu {
+                display: none;
+            }
         }
     }
 }
