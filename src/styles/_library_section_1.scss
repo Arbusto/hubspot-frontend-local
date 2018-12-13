@@ -1,0 +1,25 @@
+.library {
+    .section-1 {
+        height: 490px;
+
+        .images {
+            height: auto;
+        }
+
+        .columns {
+            height: 100%;
+
+            &.columns-left {
+                padding-top: 120px;
+            }
+
+            &.columns-right {
+                .images-right {
+                    position: absolute;
+                    top: -40px;
+                    right: 0px;
+                }
+            }
+        }
+    }
+}
