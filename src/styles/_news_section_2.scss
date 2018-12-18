@@ -1,0 +1,20 @@
+.news {
+    .section-2 {
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .columns {
+            display: flex;
+
+            &.columns-right {
+                justify-content: flex-end;
+            }
+        }
+
+        .images {
+            height: auto;
+        }
+    }
+}

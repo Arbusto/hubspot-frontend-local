@@ -1,5 +1,9 @@
 .library {
     .section-2 {
+        &.extra-content {
+            display: none;
+        }
+
         .row {
             display: flex;
             justify-content: space-between;

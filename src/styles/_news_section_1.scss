@@ -1,0 +1,37 @@
+.news {
+    .section-1 {
+        height: 490px;
+
+        .images {
+            height: auto;
+        }
+
+        .columns {
+            height: 100%;
+
+            &.columns-left {
+                padding-top: 120px;
+            }
+
+            &.columns-right {
+                .images-right {
+                    position: absolute;
+                    top: -30px;
+                    right: 0px;
+                }
+            }
+        }
+
+        .buttons {
+            border-radius: 20px;
+            background: white;
+            color: #0070C0;
+            font-weight: bold;
+
+            button {
+                margin: 15px 15px 15px 0px;
+                padding: 10px 15px;
+            }
+        }
+    }
+}
