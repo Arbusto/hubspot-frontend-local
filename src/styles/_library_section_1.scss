@@ -16,9 +16,21 @@
             &.columns-right {
                 .images-right {
                     position: absolute;
-                    top: -40px;
+                    top: -30px;
                     right: 0px;
                 }
+            }
+        }
+
+        .buttons {
+            border-radius: 20px;
+            background: white;
+            color: #0070C0;
+            font-weight: bold;
+
+            button {
+                margin: 15px 15px 15px 0px;
+                padding: 10px 15px;
             }
         }
     }
