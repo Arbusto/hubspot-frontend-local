@@ -1,6 +1,6 @@
 .article {
     .section-1 {
-        height: 440px;
+        min-height: 440px;
 
         .images {
             height: auto;
@@ -14,6 +14,8 @@
                 display: flex;
                 width: 100%;
                 color: #197ec5;
+                font-size: 13px;
+                align-items: flex-end;
 
                 div {
                     margin-right: 25px;
@@ -29,22 +31,31 @@
                 }
             }
 
-            .titles-left {
+            .titles {
                 margin-bottom: 10px;
             }
 
-            .texts-left {
-                margin-bottom: 10px;
+            .texts {
+                margin-bottom: 15px;
+                color: #324654;
+                font-size: 15px;
 
                 i {
                     color: #197ec5;
                     padding: 3px;
                 }
-            }
 
-            .buttons-left {
-                background-color: #FFAF3A;
-                padding: 3px 30px;
+                &.texts-quote {
+                    color: #324654;
+                    font-size: 28px;
+                }
+
+                &.texts-quote-author {
+                    color: #324654;
+                    font-size: 28px;
+                    border-left: 4px solid #0070C0;
+                    padding-left: 15px;
+                }
             }
         }
 
