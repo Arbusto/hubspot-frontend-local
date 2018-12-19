@@ -1,0 +1,59 @@
+.article {
+    .section-1 {
+        height: 440px;
+
+        .images {
+            height: auto;
+        }
+
+        .columns-left {
+            padding-top: 55px;
+            padding-bottom: 55px;
+
+            .header {
+                display: flex;
+                width: 100%;
+                color: #197ec5;
+
+                div {
+                    margin-right: 25px;
+                }
+
+                span {
+                    margin-right: 5px;
+                }
+
+                .icon {
+                    width: 15px;
+                    color: #197ec5;
+                }
+            }
+
+            .titles-left {
+                margin-bottom: 10px;
+            }
+
+            .texts-left {
+                margin-bottom: 10px;
+
+                i {
+                    color: #197ec5;
+                    padding: 3px;
+                }
+            }
+
+            .buttons-left {
+                background-color: #FFAF3A;
+                padding: 3px 30px;
+            }
+        }
+
+        .columns-right {
+            .images-right {
+                position: absolute;
+                top: -40px;
+                right: 0px;
+            }
+        }
+    }
+}
