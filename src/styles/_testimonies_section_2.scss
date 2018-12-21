@@ -1,0 +1,55 @@
+.testimonies {
+    .section-2 {
+        margin-top: 50px;
+
+        &.extra-content {
+            display: none;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .columns {
+            display: flex;
+            margin-bottom: 100px;
+
+            &.columns-right {
+                justify-content: flex-end;
+            }
+        }
+
+        .titles {
+            margin-bottom: 15px;
+
+            &.titles-top {
+                margin-bottom: 25px;
+            }
+        }
+
+        .texts {
+            margin-bottom: 15px;
+        }
+
+        .images {
+            height: auto;
+            margin-right: 30px;
+        }
+
+        .buttons {
+            width: 100%;
+            display: flex;
+
+            button {
+                padding: 10px 40px;
+            }
+
+            .buttons-bottom {
+                margin: 0 auto;
+                padding: 10px 55px;
+                background-color: #FFB000;
+            }
+        }
+    }
+}

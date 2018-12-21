@@ -16,3 +16,11 @@ window.moreSucessStories = () => {
   viewMoreBtnRow.hide();
   extraContent.show();
 }
+
+window.moreTestimonies = () => {
+  const viewMoreBtn = $('.testimonies > .section-2').find('.buttons-bottom');
+  const viewMoreBtnRow = viewMoreBtn.closest('.row');
+  const extraContent = $('.testimonies > .section-2').find('.extra-content');
+  viewMoreBtnRow.hide();
+  extraContent.show();
+}
