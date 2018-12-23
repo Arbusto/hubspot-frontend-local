@@ -44,10 +44,8 @@
                 margin: 0 auto;
                 display: block;
                 margin-top: 10px;
-
-                button {
-                    width: 100%;
-                }
+                display: flex;
+                justify-content: center;
             }
         }
     }

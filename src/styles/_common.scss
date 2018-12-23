@@ -34,3 +34,46 @@ hr {
 .carousel-control {
     display: none;
 }
+
+.module-hero {
+    .images-right {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.module-logos {
+    .title, .subtitle {
+        margin-bottom: 5px;
+    }
+
+    .logo-text {
+        margin-top: 10px;
+    }
+
+    .separator {
+        width: 1px;
+    }
+}
+
+.titles-large {
+    font-size: 45px !important;
+    color: #197ec5;
+    font-weight: 600;
+}
+
+.titles-normal {
+    font-size: 35px !important;
+    color: #197ec5;
+    font-weight: 600;
+}
+
+.texts-large {
+    font-size: 24px;
+    color: #4A626D;
+}
+
+.texts-normal {
+    font-size: 16px;
+    color: #4A626D;
+}
