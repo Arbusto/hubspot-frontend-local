@@ -1,0 +1,41 @@
+.about-us {
+    .section-3 {
+        display: flex;
+        flex-direction: column;
+        margin-top: 50px;
+
+        .separator {
+            height: 1px;
+            width: 100%;
+            background-color: #0071BB;
+            margin: 20px 0;
+        }
+
+        .logos {
+            justify-content: center;
+
+            .person {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .logo-link {
+                display: flex;
+                align-items: center;
+
+                i {
+                    color: #0071BB;
+                    font-size: 22px;
+                    padding: 5px;
+                }
+            }
+
+            img {
+                border-radius: 50%;
+            }
+        }
+    }
+}

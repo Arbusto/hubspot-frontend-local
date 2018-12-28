@@ -1,0 +1,35 @@
+.about-us {
+    .section-1 {
+        height: 440px;
+
+        .images {
+            height: auto;
+        }
+
+        .columns-left {
+            padding-top: 55px;
+            padding-bottom: 55px;
+
+            .titles-left {
+                margin-bottom: 10px;
+            }
+
+            .texts-left {
+                margin-bottom: 10px;
+
+                i {
+                    color: #197ec5;
+                    padding: 3px;
+                }
+            }
+        }
+
+        .columns-right {
+            .images-right {
+                position: absolute;
+                top: -40px;
+                right: 0px;
+            }
+        }
+    }
+}
