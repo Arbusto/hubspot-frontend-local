@@ -4,6 +4,24 @@
             display: none;
         }
 
+        .buttons:not(.more-button) {
+            button {
+                width: 144px;
+                height: 50px;
+                color: white;
+                background-color: #1471C5;
+            }
+
+            a {
+                color: white;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+
         .row {
             display: flex;
             justify-content: space-between;
@@ -37,10 +55,6 @@
         .buttons {
             width: 100%;
             display: flex;
-
-            button {
-                padding: 10px 40px;
-            }
 
             .buttons-bottom {
                 margin: 0 auto;

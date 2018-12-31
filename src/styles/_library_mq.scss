@@ -1,0 +1,33 @@
+@media screen and (max-width: 991.98px) {
+    .library {
+        .section-1 {
+            .columns {
+                padding-top: 70px !important;
+            }
+
+            .buttons {
+                padding-bottom: 55px;
+
+                a {
+                    padding: 0px 5px;
+                }
+            }
+        }
+
+        .columns {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0px !important;
+            margin-top: 10px !important;
+        }
+
+        .titles {
+            margin-bottom: 0px;
+            margin-top: 10px;
+        }
+
+        .more-button {
+            padding: 15px 0px;
+        }
+    }
+}
