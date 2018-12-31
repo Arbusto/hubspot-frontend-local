@@ -1,0 +1,22 @@
+@media screen and (max-width: 991.98px) {
+    .article {
+        .section-1 {
+            .header {
+                display: flex;
+                justify-content: center;
+
+                div {
+                    margin-right: 0px !important;
+                }
+
+                .author {
+                    margin-right: 10px !important;
+                }
+            }
+
+            .images img {
+                padding: 15px;
+            }
+        }
+    }
+}
