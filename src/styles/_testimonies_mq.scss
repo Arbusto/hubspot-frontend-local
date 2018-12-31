@@ -1,0 +1,43 @@
+@media screen and (max-width: 991.98px) {
+    .testimonies {
+        .titles {
+            padding: 15px 0px 10px 0px !important;
+        }
+
+        .texts {
+            padding: 0 0px 45px 0 !important;
+        }
+
+        .section-2 {
+            margin-top: 0px !important;
+
+            .columns {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 50px;
+                margin-top: 0px !important;
+
+                .titles {
+                    display: flex;
+                    justify-content: center;
+                    text-align: center;
+                    padding: 5px;
+                }
+
+                .images {
+                    img {
+                        width: 100% !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .module-hero {
+        .columns {
+            div {
+                text-align: center !important;
+            }
+        }
+    }
+}
