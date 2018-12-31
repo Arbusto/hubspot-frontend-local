@@ -1,0 +1,24 @@
+@media screen and (max-width: 991.98px) {
+    .about-us {
+        .section-1 {
+            padding-bottom: 0px;
+        }
+
+        .section-2 {
+            &.module-hero {
+                margin-top: 0px;
+
+                .row {
+                    display: flex;
+                    flex-direction: column-reverse;
+
+                    .columns {
+                        .images-left-2, .images-left-3 {
+                            display: none !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

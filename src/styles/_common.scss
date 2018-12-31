@@ -40,6 +40,10 @@ hr {
         display: flex;
         justify-content: flex-end;
     }
+
+    .texts-subtitle {
+        margin-bottom: 10px;
+    }
 }
 
 .module-logos {
@@ -75,5 +79,10 @@ hr {
 
 .texts-normal {
     font-size: 16px;
+    color: #4A626D;
+}
+
+.texts-small {
+    font-size: 14px;
     color: #4A626D;
 }

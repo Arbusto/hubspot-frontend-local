@@ -1,8 +1,12 @@
 .about-us {
-    .section-3 {
+    .section-4 {
         display: flex;
         flex-direction: column;
         margin-top: 50px;
+
+        .texts-normal {
+            font-weight: bolder;
+        }
 
         .separator {
             height: 1px;
