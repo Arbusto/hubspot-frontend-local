@@ -13,23 +13,13 @@ footer {
         width: 95%;
     }
 
-    .copyrights {
+    .copyrights-left {
+        text-align: left;
+    }
+
+    .copyrights-right {
+        text-align: right;
         width: 100%;
-        display: flex;
-
-        div {
-            margin: 0;
-            padding: 0;
-
-            &.copyrights-left {
-                text-align: left;
-            }
-
-            &.copyrights-right {
-                text-align: right;
-                width: 100%;
-            }
-        }
     }
 
     .office-list {
@@ -47,9 +37,29 @@ footer {
         flex-direction: column;
         justify-content: flex-end;
 
+        a {
+            color: white;
+            padding: 15px 0px;
+        }
+
         .social-logos {
             display: flex;
             flex-direction: row;
+
+            .footer-social {
+                color: white;
+                text-decoration: none;
+                padding: 0px;
+
+                i {
+                    border-radius: 15px;
+                    padding: 5px;
+                }
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
 
             div {
                 padding: 1px;
