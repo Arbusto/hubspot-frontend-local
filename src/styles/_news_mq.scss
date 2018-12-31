@@ -1,0 +1,36 @@
+@media screen and (max-width: 991.98px) {
+    .news {
+        .columns {
+            margin-top: 0px !important;
+        }
+
+        .row {
+            margin-bottom: 0px !important;
+        }
+
+        .images {
+            padding: 15px 0px;
+        }
+
+        .overlay-wrapper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            bottom: 0;
+            padding: 15px 1px;
+
+            .overlay {
+                position: static;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                padding: 10px;
+                background-color: rgba(0, 0, 0, 0.3);
+                width: 100%;
+                border-radius: 15px;
+            }
+        }
+    }
+}
