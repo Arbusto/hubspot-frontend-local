@@ -7,13 +7,17 @@
         }
 
         .images {
-            height: auto;
+            width: 510px;
+
+            img {
+                width: 100%;
+            }
         }
 
         .columns-right {
             .images-right {
                 position: absolute;
-                top: -70px;
+                top: -95px;
                 right: 0px;
             }
         }

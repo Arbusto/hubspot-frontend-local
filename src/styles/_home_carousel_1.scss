@@ -1,7 +1,5 @@
 .home {
     .carousel-1 {
-        margin-top: 30px;
-
         button {
             width: 172px;
             height: 50px;
@@ -32,6 +30,12 @@
             height: 328.6px;
             text-align: center;
             align-items: center;
+
+            &.images-left img {
+                width: 100%;
+                max-width: 350px;
+                height: auto;
+            }
 
             .texts-image-right-title {
                 margin-top: 10px;

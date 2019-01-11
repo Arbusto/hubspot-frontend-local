@@ -1,11 +1,18 @@
 .about-us {
-    .section-3 {
+    .section-6 {
         display: flex;
         flex-direction: column;
-        margin-top: 80px;
+        margin-top: 50px;
 
         .texts-normal {
             font-weight: bolder;
+        }
+
+        .separator {
+            height: 1px;
+            width: 100%;
+            background-color: #0071BB;
+            margin: 20px 0;
         }
 
         .logos {

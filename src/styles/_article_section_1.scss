@@ -7,15 +7,16 @@
         }
 
         .columns-left {
-            padding-top: 55px;
-            padding-bottom: 55px;
-
             .header {
                 display: flex;
                 width: 100%;
                 color: #197ec5;
                 font-size: 13px;
                 align-items: flex-end;
+
+                svg {
+                    fill: #197ec5;
+                }
 
                 div {
                     margin-right: 25px;
@@ -46,13 +47,13 @@
                 }
 
                 &.texts-quote {
-                    color: #324654;
-                    font-size: 28px;
+                    color: #0070C0;
+                    font-size: 25px;
                 }
 
                 &.texts-quote-author {
                     color: #324654;
-                    font-size: 28px;
+                    font-size: 25px;
                     border-left: 4px solid #0070C0;
                     padding-left: 15px;
                 }
