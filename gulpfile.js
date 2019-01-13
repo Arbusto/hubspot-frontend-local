@@ -19,7 +19,7 @@ const babelify = require("babelify");
 const source = require('vinyl-source-stream');
 const gutil = require('gulp-util');
 const buffer = require('vinyl-buffer');
-
+const _ = require('lodash');
 
 function getFilePath(name) {
   let options = {
@@ -191,6 +191,49 @@ gulp.task('assets-prompt', () => {
   process.exit(1);
 });
 
+const newModule = (config) => {
+  let { type, fields } = config;
+  const path = `modules/${type}`;
+  const css = fs.readFileSync(`./src/${path}/${type}.css`, "utf8").toString();
+  let html = fs.readFileSync(`./src/${path}/${type}.html`, "utf8").toString();
+
+  _.each(fields, (field, key) => {
+    html = html.replace(new RegExp(key, 'g'), field.name.toLowerCase());
+  });
+
+  const module = {
+    ...config,
+    html,
+    css,
+  }
+}
+
+gulp.task('modules', () => {
+  const views = [];
+
+  fs.readdirSync('./src/views/').forEach(view => {
+    let source = fs.readFileSync(`./src/views/${view}`).toString();
+    const regex = /newModule\([\s\S]*?\)/g;
+    const toReplace = source.match(regex);
+    if (toReplace) {
+      toReplace.forEach((moduleString) => {
+        const module = eval(moduleString);
+        fs.writeFileSync(`./src/views/${view}`, module)
+        console.log(moduleString);
+        // options = {
+        //   method: 'POST',
+        //   uri: `http://api.hubapi.com/content/api/v2/templates?hapikey=${api_key}`,
+        //   headers: {
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: JSON.stringify(module)
+        // };
+      });
+    }
+    return source;
+  });
+});
+
 gulp.task('views', () => {
   const rewriteIncludes = (viewToRewrite) => {
     let source = viewToRewrite;
@@ -302,7 +345,7 @@ gulp.task('design-manager', () => {
   });
 });
 
-gulp.task('build', ['concat-head', 'scripts', 'views']);
+gulp.task('build', ['concat-head', 'scripts', 'modules', 'views']);
 
 gulp.task('default', ['build', 'servePage']);
 
