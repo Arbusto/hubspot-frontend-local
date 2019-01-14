@@ -5,12 +5,18 @@
         }
 
         .background {
-            height: 1270px;
+            display: none;
         }
 
         .section-2 {
             &.module-hero {
                 margin-top: 0px;
+
+                .text-columns {
+                    .texts {
+                        width: 100%;
+                    }
+                }
 
                 .row {
                     display: flex;

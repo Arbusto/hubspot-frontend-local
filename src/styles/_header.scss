@@ -2,7 +2,15 @@ header {
     height: 161px;
     background-color: #EFF0F2;
 
+    .mobile-menu-hamburger {
+        display: none;
+    }
+
     .mobile-menu {
+        display: none;
+    }
+
+    .software-menu {
         display: none;
     }
 }

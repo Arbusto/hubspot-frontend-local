@@ -1,6 +1,6 @@
 .testimonies {
     .section-2 {
-        margin-top: 50px;
+        margin-bottom: 0px;
 
         &.extra-content {
             display: none;
@@ -31,6 +31,10 @@
         .images {
             height: auto;
             margin-right: 30px;
+
+            video {
+                border-radius: 10px;
+            }
         }
 
         .buttons {

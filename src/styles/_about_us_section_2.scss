@@ -24,8 +24,13 @@
         }
 
         .text-columns {
+            padding: 0px;
             display: flex;
             border-top: 1px solid #027CC1;
+
+            .texts {
+                width: 50%;
+            }
         }
 
         .texts {

@@ -24,3 +24,30 @@ window.moreTestimonies = () => {
   viewMoreBtnRow.hide();
   extraContent.show();
 }
+
+window.toggleMobileMenu = () => {
+  const postition = $(".mobile-menu").css('right');
+  $(".software-menu").css('display', "flex");
+  $(".software-menu").css('left', "1500px");
+  console.log(postition)
+  if (postition == '1500px') {
+    $(".mobile-menu").css('right', "0px");
+    $('html').css('overflow', 'hidden');
+  } else {
+    $(".mobile-menu").css('right', "1500px");
+    $(".software-menu").css('display', "none");
+    $('html').css('overflow', 'auto');
+  }
+}
+
+window.toggleSoftwareMenu = () => {
+  const postition = $(".software-menu").css('left');
+  console.log(postition)
+  if (postition == '1500px') {
+    $(".software-menu").css('left', "0px");
+    $('html').css('overflow', 'hidden');
+  } else {
+    $(".software-menu").css('left', "1500px");
+    $('html').css('overflow', 'auto');
+  }
+}
