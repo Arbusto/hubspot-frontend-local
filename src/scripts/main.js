@@ -51,3 +51,30 @@ window.toggleSoftwareMenu = () => {
     $('html').css('overflow', 'auto');
   }
 }
+
+// window.setLanguage = (language) => {
+//   window.userLanguage = language;
+//   localStorage.setItem("u-planner_language", language);
+// }
+
+// window.userLanguage = localStorage.getItem("u-planner_language")
+// if (!window.userLanguage || window.userLanguage == '') {
+//   window.userLanguage = 'es';
+//   $.getJSON('https://api.ipgeolocation.io/ipgeo?apiKey=08f578d8853d414897f9e44bf0b84552', function (location) {
+//     window.userLanguage = location.languages.slice(0, 2);
+//     localStorage.setItem("u-planner_language", location.languages.slice(0, 2));
+//   });
+
+//   if (window.hubspotPath.slice(0, 4).startsWith('/') && window.hubspotPath.slice(0, 4).endsWith('/')) {
+//     window.hubspotPath = '/' + window.hubspotPath.substring(4, window.hubspotPath.length);
+//   }
+
+//   let redirectTo = `${window.hubspotPath}`;
+//   if (window.userLanguage != 'es') {
+//     redirectTo = `/${window.userLanguage}${window.hubspotPath}`;
+//   }
+
+//   if (window.location.pathname != redirectTo) {
+//     window.location.href = redirectTo// + '?hs_preview=RfLjdZGX-6729747562';
+//   }
+// }
