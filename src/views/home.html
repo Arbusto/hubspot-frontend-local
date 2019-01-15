@@ -1,4 +1,23 @@
 <div>
-    //field('nombre');
-    {% inline_text field="nombre" value="{{ module.nombre }}" %}
+    Module({
+        type: 'test',
+        name:'works1',
+        fields:{
+            title:{
+                label:'Titulo'
+            },
+            subtitle:{
+                label:'Sub Titulo'
+            },
+            headline:{
+                label:'Encabezado'
+            },
+            text:{
+                label:'Texto'
+            },
+            text2:{
+                label:'Segundo Texto'
+            }
+        }
+    })
 </div>

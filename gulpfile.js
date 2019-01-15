@@ -20,6 +20,8 @@ const source = require('vinyl-source-stream');
 const gutil = require('gulp-util');
 const buffer = require('vinyl-buffer');
 const _ = require('lodash');
+const slugify = require('slugify')
+const { api_key, files: { html: { hubspot_path } } } = config;
 
 function getFilePath(name) {
   let options = {
@@ -179,7 +181,7 @@ gulp.task('servePage', () => {
     });
     gulp.watch('./src/styles/*.*', ['sass-lint', 'concat-head']).on('change', browserSync.reload);
     gulp.watch('./src/scripts/*.js', ['eslint']);
-    gulp.watch('./src/views/*.html', ['views']);
+    gulp.watch('./src/views/*.html', ['views', 'modules']);
   });
 });
 
@@ -191,46 +193,85 @@ gulp.task('assets-prompt', () => {
   process.exit(1);
 });
 
-const newModule = (config) => {
-  let { type, fields } = config;
+const Module = (config) => {
+  let { type, fields, name } = config;
   const path = `modules/${type}`;
   const css = fs.readFileSync(`./src/${path}/${type}.css`, "utf8").toString();
-  let html = fs.readFileSync(`./src/${path}/${type}.html`, "utf8").toString();
-
+  let source = fs.readFileSync(`./src/${path}/${type}.html`, "utf8").toString();
+  let fieldsArray = [];
   _.each(fields, (field, key) => {
-    html = html.replace(new RegExp(key, 'g'), field.name.toLowerCase());
+    if (field && field.label) {
+      const name = slugify(field.label, '_').toLowerCase();
+      source = source.replace(new RegExp(`^${key}$`, 'g'), name);
+
+      fieldsArray.push({
+        type: 'richtext',
+        default: name,
+        name,
+        ...field,
+      });
+    }
   });
 
-  const module = {
+  return {
+    global: false,
+    name: type,
+    isAvailableForNewContent: false,
+    hostTemplateTypes: ["PAGE"],
     ...config,
-    html,
+    fields: fieldsArray,
+    label: name,
+    widgetLabel: name,
+    source,
     css,
+    schemaVersion: 2,
   }
 }
 
 gulp.task('modules', () => {
-  const views = [];
-
   fs.readdirSync('./src/views/').forEach(view => {
     let source = fs.readFileSync(`./src/views/${view}`).toString();
-    const regex = /newModule\([\s\S]*?\)/g;
+    const regex = /Module\([\s\S]*?\)/g;
     const toReplace = source.match(regex);
     if (toReplace) {
       toReplace.forEach((moduleString) => {
-        const module = eval(moduleString);
-        fs.writeFileSync(`./src/views/${view}`, module)
-        console.log(moduleString);
-        // options = {
-        //   method: 'POST',
-        //   uri: `http://api.hubapi.com/content/api/v2/templates?hapikey=${api_key}`,
-        //   headers: {
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify(module)
-        // };
+        const newModule = eval(moduleString.replace(/\s/g, ''));
+        fs.writeFileSync(`./src/views/test.html`, newModule.name)
+        let update = {};
+        let create = {};
+        rp(`https://api.hubapi.com/content/api/v4/custom-widgets?hapikey=${api_key}&name=${newModule.name}`)
+          .then((response) => {
+            const oldModule = JSON.parse(response).objects && JSON.parse(response).objects[0];
+            fs.writeFileSync(`./src/views/test.html`, JSON.stringify(JSON.parse(response).objects))
+            if (!oldModule || !oldModule.id) {
+              create = {
+                method: 'POST',
+                uri: `http://api.hubapi.com/content/api/v4/custom-widgets/?hapikey=${api_key}`,
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newModule)
+              };
+            }
+
+            if (oldModule && oldModule.id && !_.isEqual(newModule, oldModule)) {
+              update = {
+                method: 'PUT',
+                uri: `http://api.hubapi.com/content/api/v4/custom-widgets/${oldModule.id}/?hapikey=${api_key}`,
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newModule)
+              };
+            }
+            const options = update && update.uri ? update : create;
+            if (options && options.uri) {
+              const debouncedRp = _.debounce(rp, 5000);
+              debouncedRp(options);
+            }
+          });
       });
-    }
-    return source;
+    };
   });
 });
 
@@ -245,11 +286,11 @@ gulp.task('views', () => {
         const setViewVariable = `{% set ${viewName} = partials_path+"${viewName}.html" %} `;
         source = setViewVariable + source;
       })
-      source = source.replace(/include_view/g, 'include');
+      source = source.replace(/include_view/g, 'include'); ``
     }
     return source;
   }
-  const { api_key, files: { html: { hubspot_path } } } = config;
+
   rp(`http://api.hubapi.com/content/api/v2/templates/?hapikey=${api_key}`)
     .then((response) => {
       let files = {};

@@ -1,4 +1,15 @@
-<div>
-    //field('title');
+<h1>
     {% inline_text field="title" value="{{ module.title }}" %}
-</div>
+</h1>
+<h2>
+    {% inline_text field="subtitle" value="{{ module.subtitle }}" %}
+</h2>
+<h3>
+    {% inline_text field="headline" value="{{ module.headline }}" %}
+</h3>
+<p>
+    {% inline_text field="text" value="{{ module.text }}" %}
+</p>
+<p>
+    {% inline_text field="text2" value="{{ module.text2 }}" %}
+</p>
