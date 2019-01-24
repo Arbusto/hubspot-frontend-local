@@ -4,7 +4,6 @@ const browserSync = require('browser-sync').create();
 const sassLint = require('gulp-sass-lint');
 const concat = require('gulp-concat');
 const eslint = require('gulp-eslint');
-const lintRulesPath = './.eslintrc';
 const autoprefixer = require('gulp-autoprefixer');
 const minifyCSS = require('gulp-clean-css');
 const minifyJS = require('gulp-uglify');
@@ -17,7 +16,6 @@ const readlineSync = require('readline-sync');
 const browserify = require("browserify");
 const babelify = require("babelify");
 const source = require('vinyl-source-stream');
-const gutil = require('gulp-util');
 const buffer = require('vinyl-buffer');
 const _ = require('lodash');
 const slugify = require('slugify')
@@ -180,8 +178,8 @@ gulp.task('servePage', () => {
       https: false
     });
     gulp.watch('./src/styles/*.*', ['sass-lint', 'concat-head']).on('change', browserSync.reload);
-    gulp.watch('./src/scripts/*.js', ['eslint']);
-    gulp.watch('./src/views/*.html', ['views', 'modules']);
+    gulp.watch('./src/scripts/*.js', ['eslint', 'scripts']).on('change', browserSync.reload);
+    gulp.watch('./src/views/*.html', { delay: 2000, ignoreInitial: true }, ['modules', 'views'])
   });
 });
 
@@ -193,89 +191,92 @@ gulp.task('assets-prompt', () => {
   process.exit(1);
 });
 
-const Module = (config) => {
-  let { type, fields, name } = config;
-  const path = `modules/${type}`;
-  const css = fs.readFileSync(`./src/${path}/${type}.css`, "utf8").toString();
-  let source = fs.readFileSync(`./src/${path}/${type}.html`, "utf8").toString();
-  let fieldsArray = [];
-  _.each(fields, (field, key) => {
-    if (field && field.label) {
-      const name = slugify(field.label, '_').toLowerCase();
-      source = source.replace(new RegExp(`^${key}$`, 'g'), name);
-
-      fieldsArray.push({
-        type: 'richtext',
-        default: name,
-        name,
-        ...field,
-      });
-    }
-  });
-
-  return {
-    global: false,
-    name: type,
-    isAvailableForNewContent: false,
-    hostTemplateTypes: ["PAGE"],
-    ...config,
-    fields: fieldsArray,
-    label: name,
-    widgetLabel: name,
-    source,
-    css,
-    schemaVersion: 2,
-  }
-}
-
 gulp.task('modules', () => {
+  //executed with eval
+  const Module = (config) => {
+    let { type, fields, name } = config;
+    const path = `modules/${type}`;
+    const css = fs.readFileSync(`./src/${path}/${type}.css`, "utf8").toString();
+    let source = fs.readFileSync(`./src/${path}/${type}.html`, "utf8").toString();
+    let fieldsArray = [];
+    _.each(fields, (field, key) => {
+      if (field && field.label) {
+        const name = slugify(field.label, '_').toLowerCase();
+        source = source.replace(new RegExp(`^${key}$`, 'g'), name);
+
+        fieldsArray.push({
+          type: 'richtext',
+          default: name,
+          name,
+          ...field,
+        });
+      }
+    });
+
+    return {
+      global: false,
+      name: type,
+      isAvailableForNewContent: false,
+      hostTemplateTypes: ["PAGE"],
+      ...config,
+      fields: fieldsArray,
+      label: name,
+      widgetLabel: name,
+      source,
+      css,
+      schemaVersion: 2,
+    }
+  }
   fs.readdirSync('./src/views/').forEach(view => {
     let source = fs.readFileSync(`./src/views/${view}`).toString();
     const regex = /Module\([\s\S]*?\)/g;
     const toReplace = source.match(regex);
     if (toReplace) {
-      toReplace.forEach((moduleString) => {
+      toReplace.forEach(async (moduleString) => {
         const newModule = eval(moduleString.replace(/\s/g, ''));
         fs.writeFileSync(`./src/views/test.html`, newModule.name)
         let update = {};
         let create = {};
-        rp(`https://api.hubapi.com/content/api/v4/custom-widgets?hapikey=${api_key}&name=${newModule.name}`)
-          .then((response) => {
-            const oldModule = JSON.parse(response).objects && JSON.parse(response).objects[0];
-            fs.writeFileSync(`./src/views/test.html`, JSON.stringify(JSON.parse(response).objects))
-            if (!oldModule || !oldModule.id) {
-              create = {
-                method: 'POST',
-                uri: `http://api.hubapi.com/content/api/v4/custom-widgets/?hapikey=${api_key}`,
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(newModule)
-              };
-            }
-
-            if (oldModule && oldModule.id && !_.isEqual(newModule, oldModule)) {
-              update = {
-                method: 'PUT',
-                uri: `http://api.hubapi.com/content/api/v4/custom-widgets/${oldModule.id}/?hapikey=${api_key}`,
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(newModule)
-              };
-            }
-            const options = update && update.uri ? update : create;
-            if (options && options.uri) {
-              const debouncedRp = _.debounce(rp, 5000);
-              debouncedRp(options);
-            }
-          });
+        const oldModuleResponse = await rp(`https://api.hubapi.com/content/api/v4/custom-widgets?hapikey=${api_key}&name=${newModule.name}`)
+        const oldModule = JSON.parse(oldModuleResponse).objects && JSON.parse(oldModuleResponse).objects[0];
+        //fs.writeFileSync(`./src/views/test.html`, JSON.stringify(JSON.parse(response).objects))
+        if (!oldModule || !oldModule.id) {
+          create = {
+            method: 'POST',
+            uri: `http://api.hubapi.com/content/api/v4/custom-widgets/?hapikey=${api_key}`,
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newModule)
+          };
+        }
+        if (oldModule && oldModule.id && !_.isEqual(newModule, oldModule)) {
+          update = {
+            method: 'PUT',
+            uri: `http://api.hubapi.com/content/api/v4/custom-widgets/${oldModule.id}/?hapikey=${api_key}`,
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newModule)
+          };
+        }
+        const options = update && update.uri ? update : create;
+        if (options && options.uri) {
+          const moduleResponse = await rp(options);
+          const rewriteModules =
+            console.log('moduleResponse')
+          console.log(moduleResponse)
+          return moduleResponse;
+        }
       });
-    };
+    }
   });
 });
 
 gulp.task('views', () => {
+  const rewriteModules = () => {
+
+  }
   const rewriteIncludes = (viewToRewrite) => {
     let source = viewToRewrite;
     const regex = /{% \binclude_view\b .* %}/g;
@@ -295,6 +296,7 @@ gulp.task('views', () => {
     .then((response) => {
       let files = {};
       let views = [];
+      // Each file grabbed from hubspot
       JSON.parse(response).objects.forEach((file) => {
         if (file.path.includes(hubspot_path) && file.label.endsWith('.html')) {
           files[file.label] = file.id;
@@ -304,6 +306,7 @@ gulp.task('views', () => {
       fs.readdirSync('./src/views/').forEach(view => {
         views.push(view);
         const source = rewriteIncludes(fs.readFileSync(`./src/views/${view}`).toString());
+
         if (files[view]) {
           options = {
             method: 'PUT',
